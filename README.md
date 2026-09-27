@@ -9,6 +9,7 @@ A clean, minimalist, high-end multi-model AI workspace built with Streamlit. Ath
 - **Multi-Model Intelligence**: Seamlessly switch between:
   - Anthropic **Claude 3.5 Sonnet** (`claude-sonnet-4-6` / `claude-3-5-sonnet-latest`)
   - OpenAI **GPT-4o** (`gpt-4o`)
+  - Google **Gemini 2.5 Flash** (`gemini-2.5-flash`)
   - xAI **Grok 2** (`grok-2-latest`)
 - **🌐 Web Search**: Grounded real-time answers via Tavily Search API with dynamic tool-calling and fallback context injection.
 - **📄 Document RAG**: Instant keyword relevance retrieval from uploaded `.txt` and `.pdf` documents with 800-char / 100-overlap in-memory chunking (zero external vector database required).
@@ -27,6 +28,7 @@ Configure these either via your hosting platform's environment settings, in a lo
 | :--- | :---: | :--- |
 | `ANTHROPIC_API_KEY` | Optional* | API key for Anthropic Claude models (`sk-ant-...`) |
 | `OPENAI_API_KEY` | Optional* | API key for OpenAI GPT-4o (`sk-...`) |
+| `GEMINI_API_KEY` | Optional* | API key for Google Gemini (`AIzaSy...`) |
 | `XAI_API_KEY` | Optional* | API key for xAI Grok (`xai-...`) |
 | `TAVILY_API_KEY` | Optional | API key for Tavily live web search (`tvly-...`) |
 | `GMAIL_USER` | Optional | Gmail email address for IMAP read-only access |

@@ -105,6 +105,10 @@ def show_settings_modal():
         st.markdown(f"**OpenAI API Key** — <span class='{'status-set' if openai_set else 'status-empty'}'>{'● set' if openai_set else '○ empty'}</span>", unsafe_allow_html=True)
         openai_key = st.text_input("OpenAI Key", type="password", placeholder="•••••••• (configured)" if openai_set else "sk-...", label_visibility="collapsed")
 
+        gemini_set = is_configured("GEMINI_API_KEY")
+        st.markdown(f"**Google Gemini API Key** — <span class='{'status-set' if gemini_set else 'status-empty'}'>{'● set' if gemini_set else '○ empty'}</span>", unsafe_allow_html=True)
+        gemini_key = st.text_input("Gemini Key", type="password", placeholder="•••••••• (configured)" if gemini_set else "AIzaSy...", label_visibility="collapsed")
+
     with col2:
         xai_set = is_configured("XAI_API_KEY")
         st.markdown(f"**xAI (Grok) API Key** — <span class='{'status-set' if xai_set else 'status-empty'}'>{'● set' if xai_set else '○ empty'}</span>", unsafe_allow_html=True)
@@ -153,6 +157,9 @@ def show_settings_modal():
         if openai_key.strip():
             set_session_config("OPENAI_API_KEY", openai_key.strip())
             saved_keys.append("OPENAI_API_KEY")
+        if gemini_key.strip():
+            set_session_config("GEMINI_API_KEY", gemini_key.strip())
+            saved_keys.append("GEMINI_API_KEY")
         if xai_key.strip():
             set_session_config("XAI_API_KEY", xai_key.strip())
             saved_keys.append("XAI_API_KEY")
@@ -248,11 +255,12 @@ tool_col1, tool_col2, tool_col3, tool_col4, tool_col5 = st.columns([3, 2, 2, 2, 
 with tool_col1:
     selected_model = st.selectbox(
         "Model",
-        options=["claude-sonnet-4-6", "gpt-4o", "grok-2-latest"],
+        options=["claude-sonnet-4-6", "gpt-4o", "grok-2-latest", "gemini-2.5-flash"],
         format_func=lambda m: {
             "claude-sonnet-4-6": "Claude 3.5 Sonnet",
             "gpt-4o": "OpenAI GPT-4o",
-            "grok-2-latest": "Grok 2"
+            "grok-2-latest": "Grok 2",
+            "gemini-2.5-flash": "Google Gemini 2.5 Flash"
         }.get(m, m),
         label_visibility="collapsed"
     )

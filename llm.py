@@ -266,8 +266,8 @@ def _ask_openai_compatible(
                     return
 
             except Exception as tool_exc:
-                if provider_name == "Grok":
-                    log_event("LLM_WARN", f"Grok tool-calling failed ({tool_exc}), falling back to direct context injection", level="warning")
+                if provider_name in ("Grok", "Gemini"):
+                    log_event("LLM_WARN", f"{provider_name} tool-calling failed ({tool_exc}), falling back to direct context injection", level="warning")
                     yield "🌐 Searching the web…\n\n"
                     user_q = ""
                     for m in reversed(messages):
@@ -293,7 +293,7 @@ def _ask_openai_compatible(
                             if delta and delta.content:
                                 yield delta.content
 
-                    log_event("LLM_SUCCESS", f"Grok completed with web fallback context [model={model}]")
+                    log_event("LLM_SUCCESS", f"{provider_name} completed with web fallback context [model={model}]")
                     return
                 else:
                     raise tool_exc
@@ -400,6 +400,17 @@ def ask(
             model="grok-2-latest",
             api_key_name="XAI_API_KEY",
             base_url="https://api.x.ai/v1",
+            messages=messages,
+            web_enabled=web_enabled,
+            system_prompt=system_prompt,
+            sources_used=sources_used
+        )
+    elif provider in ("gemini-2.5-flash", "gemini-1.5-flash"):
+        yield from _ask_openai_compatible(
+            provider_name="Gemini",
+            model=provider,
+            api_key_name="GEMINI_API_KEY",
+            base_url="https://generativelanguage.googleapis.com/v1beta/openai/",
             messages=messages,
             web_enabled=web_enabled,
             system_prompt=system_prompt,
