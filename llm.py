@@ -215,6 +215,7 @@ def _ask_openai_compatible(
                     model=model,
                     messages=formatted_messages,
                     tools=tools,
+                    tool_choice="auto",
                 )
                 choice = response.choices[0]
                 if choice.message and choice.message.tool_calls:
@@ -405,10 +406,11 @@ def ask(
             system_prompt=system_prompt,
             sources_used=sources_used
         )
-    elif provider in ("gemini-2.5-flash", "gemini-1.5-flash"):
+    elif provider in ("gemini-3.8-flash", "gemini-2.5-flash", "gemini-1.5-flash", "gemini-2.0-flash"):
+        actual_model = "gemini-3.8-flash" if provider in ("gemini-2.5-flash", "gemini-1.5-flash", "gemini-2.0-flash") else provider
         yield from _ask_openai_compatible(
             provider_name="Gemini",
-            model=provider,
+            model=actual_model,
             api_key_name="GEMINI_API_KEY",
             base_url="https://generativelanguage.googleapis.com/v1beta/openai/",
             messages=messages,

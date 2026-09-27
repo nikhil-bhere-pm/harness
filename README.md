@@ -9,7 +9,7 @@ A clean, minimalist, high-end multi-model AI workspace built with Streamlit. Ath
 - **Multi-Model Intelligence**: Seamlessly switch between:
   - Anthropic **Claude 3.5 Sonnet** (`claude-sonnet-4-6` / `claude-3-5-sonnet-latest`)
   - OpenAI **GPT-4o** (`gpt-4o`)
-  - Google **Gemini 2.5 Flash** (`gemini-2.5-flash`)
+  - Google **Gemini 3.8 Flash** (`gemini-3.8-flash`)
   - xAI **Grok 2** (`grok-2-latest`)
 - **🌐 Web Search**: Grounded real-time answers via Tavily Search API with dynamic tool-calling and fallback context injection.
 - **📄 Document RAG**: Instant keyword relevance retrieval from uploaded `.txt` and `.pdf` documents with 800-char / 100-overlap in-memory chunking (zero external vector database required).

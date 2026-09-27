@@ -255,12 +255,13 @@ tool_col1, tool_col2, tool_col3, tool_col4, tool_col5 = st.columns([3, 2, 2, 2, 
 with tool_col1:
     selected_model = st.selectbox(
         "Model",
-        options=["claude-sonnet-4-6", "gpt-4o", "grok-2-latest", "gemini-2.5-flash"],
+        options=["claude-sonnet-4-6", "gpt-4o", "gemini-3.8-flash", "grok-2-latest"],
         format_func=lambda m: {
             "claude-sonnet-4-6": "Claude 3.5 Sonnet",
             "gpt-4o": "OpenAI GPT-4o",
-            "grok-2-latest": "Grok 2",
-            "gemini-2.5-flash": "Google Gemini 2.5 Flash"
+            "gemini-3.8-flash": "Google Gemini 3.8 Flash",
+            "gemini-2.5-flash": "Google Gemini 3.8 Flash",
+            "grok-2-latest": "Grok 2"
         }.get(m, m),
         label_visibility="collapsed"
     )
