@@ -1,0 +1,29 @@
+# Environment & Secrets (NEVER COMMIT)
+.env
+.env.*
+!.env.example
+*.json
+!package.json
+*service_account*
+*service-account*
+*credentials*
+*.key
+*.pem
+
+# Application Logs
+*.log
+harness.log
+
+# Python Cache & Virtual Environments
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.venv/
+venv/
+ENV/
+build/
+dist/
+
+# Streamlit internal / secrets
+.streamlit/secrets.toml
